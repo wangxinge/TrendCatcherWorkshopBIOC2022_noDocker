@@ -57,7 +57,7 @@ devtools::install_github("jaleesr/TrendCatcher", dependencies = TRUE, build_vign
 
 Some quick examples to show how to use **TrendCatcher**.
 
-### 1. Identify dynamic differentially expressed genes (DDEGs) and generate master.list
+### 1. Identify dynamic differentially expressed genes (DDEGs) and generate master.list object
 
 ```r
 library("TrendCatcher")
@@ -96,7 +96,7 @@ draw_TrajClusterGrid(
 ![plot](./figures/TrajClusterGrid.png)
 
 
-## 4. Dynamic progamming using TimeHeatmap
+## 4. Visualize biological pathway dynamic progamming using TimeHeatmap
 
 Generate a TimeHeatmap to visualize the most dynamic top N biological pathways enrichment change 
 over time, we designed a window-sliding strategy to capture all the up-regulated or 
@@ -109,7 +109,7 @@ print(time_hetmap$time.heatmap)
 
 ![plot](./figures/Full_TimeHeatmap.png)
 
-## 5. Compare dynamic curves of a certain biological pathway between two groups
+## 5. Compare dynamic curves of a certain biological pathway between two experimental groups
 
 Same biological pathway may show up in the 2 TimeHeatmap objects from two different experimental groups. To compare its temporal behavior, we calcualted the area difference between two curves and test the seperation significance using permutation approach.
 
