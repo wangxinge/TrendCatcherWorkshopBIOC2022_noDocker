@@ -1,0 +1,53 @@
+Package: TrendCatcher
+Title: TrendCatcher: A Versitile R package for analyse longitudinal
+        RNA-seq study
+Version: 1.0.0
+Authors@R: 
+    person(given = "Xinge",
+           family = "Wang",
+           role = c("aut", "cre"),
+           email = "xwang234@uic.edu")
+Description: Identify dynamic gene from longitudinal/time course RNA-seq dataset.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Depends: 
+     RColorBrewer,
+     plyr,
+     dplyr,
+     gss,
+     compiler, 
+     stringr, 
+     gridExtra,
+     ggplot2, 
+     ggnewscale,
+     enrichR, 
+     foreach,
+     circlize, 
+     doSNOW,
+     reshape2, 
+     pracma, 
+     nlme, 
+     MASS,
+     sva, 
+     ComplexHeatmap, 
+     DESeq2, 
+     Rcpp, 
+     clusterProfiler, 
+     edgeR,
+     org.Hs.eg.db, 
+     org.Mm.eg.db
+Suggests: 
+    knitr,
+    rmarkdown,
+    pkgdown
+URL: https://wangxinge.github.io/TrendCatcherWorkshopBioc2022/
+BugReports: https://github.com/wangxinge/TrendCatcherWorkshopBioc2022/issues/new/choose
+VignetteBuilder: knitr
+DockerImage: ghcr.io/wangxinge/TrendCatcherWorkshopBioc2022:latest
+Imports: 
+    biomaRt,
+    scales
+    
