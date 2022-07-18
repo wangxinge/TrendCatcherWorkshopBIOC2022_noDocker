@@ -64,7 +64,7 @@ Instructions, documentation, and tutorials can be found at:
 
 Some quick examples to show how to use **TrendCatcher**.
 
-## 1. Identify dynamic differentially expressed genes (DDEGs) and generate master.list
+### 1. Identify dynamic differentially expressed genes (DDEGs) and generate master.list
 
 ```r
 library("TrendCatcher")
@@ -78,7 +78,18 @@ dyn.p.thres = 0.05)
 
 ```
 
-## 2. Group genes based on their trajectory pattern type
+### 2. Draw individual gene trajectory with observed data and fitted data
+
+```r
+gene.symbol.arr<-unique(master.list$master.table$Symbol)[1:6]
+p<-draw_GeneTraj(master.list = master.list, gene.symbol.arr = gene.symbol.arr, ncol = 3, nrow = 2)
+p
+```
+![plot](./figures/IndividualGeneTraj.png)
+
+
+
+## 3. Group genes based on their trajectory pattern type
 
 ```r
 draw_TrajClusterGrid(
@@ -92,24 +103,9 @@ draw_TrajClusterGrid(
 ![plot](./figures/TrajClusterGrid.png)
 
 
-## 3. Plot All types of gene trajectory patterns piechart
-
-This is a hieracycal piechart. Master pattern is the inner pie chart. Sub pattern is the outside pie chart. It shows the stats of how gene trajactory pattern is distributed.
-
-```r
-draw_TrajClusterPie(
-  master.list,
-  fig.title = "",
-  inner.radius = 0.7,
-  cex.out = 1,
-  cex.in = 1
-)
-```
-![plot](./figures/TrajClusterPie.png)
-
 ## 4. Dynamic progamming using TimeHeatmap
 
-To build the Time-Heatmap for visualize the biological pathway enrichment change 
+Generate a TimeHeatmap to visualize the most dynamic top N biological pathways enrichment change 
 over time, we designed a window-sliding strategy to capture all the up-regulated or 
 down-regulated genes for each time interval.
 
