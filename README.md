@@ -1,4 +1,23 @@
-# TrendCatcher
+# TrendCatcher Workshop (Bioconductor Conference 2022)
+
+# Instructors
+
+ - Xinge Wang (xwang234@uic.edu)
+ - Shang Gao (sgao30@uic.edu)
+
+# To cite TrendCatcher
+
+<a id="1">[1]</a> 
+Wang X, Sanborn MA, Dai Y, Rehman J. Temporal transcriptomic analysis using TrendCatcher identifies early and persistent neutrophil activation in severe COVID-19. JCI Insight. 2022 Apr 8;7(7):e157255. doi: 10.1172/jci.insight.157255. PMID: 35175937; PMCID: PMC9057597.
+
+# How to install this workshop using docker image
+
+A TrendCatcher docker image that contains the installed TrendCatcher R packages and dependencies was generated using [BuildAbiocWorkshop](https://github.com/seandavi/BuildABiocWorkshop). Please use the following command to download, 
+```sh
+docker run -e PASSWORD=abc -p 8787:8787 http://ghcr.io/wangxinge/trendcatcherworkshopbioc2022
+```
+
+
 
 # Introduction
 
