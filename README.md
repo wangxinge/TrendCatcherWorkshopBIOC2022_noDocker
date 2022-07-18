@@ -2,9 +2,9 @@
 
 ## Instructors
 
- - Xinge Wang (PhD student, xwang234@uic.edu)
- - Shang Gao (PhD student, sgao30@uic.edu)
- - Jalees Rehman (Advisor, jalees@uic.edu)
+ - Xinge Wang (xwang234@uic.edu)
+ - Shang Gao (sgao30@uic.edu)
+
 
 # Workshop Description
 
@@ -21,7 +21,7 @@ For the output of TrendCatcher, there are mainly 2 components: a master table an
 ## Workshop Outline
 
   
-  - 1. [Identify dynamic differentially expressed genes (DDEGs) and generate master table.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Identify-Dynamic-Genes.html)
+  - [1. Identify dynamic differentially expressed genes (DDEGs) and generate master table.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Identify-Dynamic-Genes.html)
   - [2. Analysis trajectories of DDEGs.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Gene-Trajectory-Analysis.html)
   - [3. Generate TimeHeatmap.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Time-Heatmap-GO.html)
   - [4. Compare a biological pathway temporal behavior between two groups.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Compare-Curve-Permutation.html)
@@ -52,14 +52,6 @@ if (!require("devtools")) {
 }
 devtools::install_github("jaleesr/TrendCatcher", dependencies = TRUE, build_vignettes = FALSE)
 ```
-
-# Documentation and Further details
-
-Instructions, documentation, and tutorials can be found at:
-
-+ [https://jaleesr.github.io/TrendCatcher](https://jaleesr.github.io/TrendCatcher/)
-+ [https://jaleesr.github.io/TrendCatcherWorkshopBIOC2022](https://jaleesr.github.io/TrendCatcherWorkshopBIOC2022/)
-
 
 # Some highlights of using **TrendCatcher**.
 
@@ -136,6 +128,14 @@ perm_output$plot
 ```
 
 ![plot](./figures/CompareCurves.png)
+
+
+# Documentation and Further details
+
+Instructions, documentation, and tutorials can be found at:
+
++ [https://jaleesr.github.io/TrendCatcher](https://jaleesr.github.io/TrendCatcher/)
+
 
 ## To cite TrendCatcher
 
