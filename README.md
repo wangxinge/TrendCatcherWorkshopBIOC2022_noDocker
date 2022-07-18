@@ -109,6 +109,46 @@ Generate a TimeHeatmap to visualize the most dynamic top N biological pathways e
 over time, we designed a window-sliding strategy to capture all the up-regulated or 
 down-regulated genes for each time interval.
 
+```r
+time_heatmap<-draw_TimeHeatmap_GO(master.list = master.list, logFC.thres = 0, top.n = 10, dyn.gene.p.thres = 0.05, keyType = "SYMBOL", OrgDb = "org.Mm.eg.db", ont = "BP", term.width = 80, GO.enrich.p = 0.05, figure.title = "TimeHeatmap")  
+print(time_hetmap$time.heatmap)
+```
+
 ![plot](./figures/Full_TimeHeatmap.png)
+
+## 5. Compare dynamic curves of a certain biological pathway between two groups
+
+Same biological pathway may show up in the 2 TimeHeatmap objects from two different experimental groups. To compare its temporal behavior, we calcualted the area difference between two curves and test the seperation significance using permutation approach.
+
+```r
+perm_output<-draw_CurveComp_Perm(master.list.1 = master.list.severe, 
+                                 master.list.2 = master.list.moderate, 
+                                 ht.1 = ht.severe, 
+                                 pathway = "neutrophil activation", 
+                                 group.1.name = "severe", 
+                                 group.2.name = "moderate", 
+                                 n.perm = 100, 
+                                 parall = FALSE, 
+                                 pvalue.threshold = 0.05)
+                                 
+perm_output$plot                            
+```
+
+![plot](./figures/CompareCurves.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
