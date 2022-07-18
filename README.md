@@ -21,8 +21,8 @@ For the output of TrendCatcher, there are mainly 2 components: a master table an
 ## Workshop Outline
 
   
-  - [1. Identify dynamic differentially expressed genes (DDEGs) and generate master table.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Identify-Dynamic-Genes.html)
-  - [2. Analysis trajectories of DDEGs.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Gene-Trajectory-Analysis.html)
+  - [1. Identify dynamic differentially expressed genes (DDEGs) and generate master.list object.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Identify-Dynamic-Genes.html)
+  - [2. Analyze trajectories of DDEGs.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Gene-Trajectory-Analysis.html)
   - [3. Generate TimeHeatmap.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Time-Heatmap-GO.html)
   - [4. Compare a biological pathway temporal behavior between two groups.](https://wangxinge.github.io/TrendCatcherWorkshopBIOC2022_noDocker/articles/Compare-Curve-Permutation.html)
  
