@@ -163,11 +163,7 @@ cal_time_p_single_gene<-function(const.output, spline.output){
 
 
 
-# Copied from ex-CRAN package MADAM and exported. The man pages are copied from
-# the original package.
-# Due to the metaseqR package didn't support R 4.0, source code were copied here.
-# Copied from ex-CRAN package MADAM and exported. The man pages are copied from
-# the original package.
+# Due to the metaseqR package didn't support R 4.0, source code were attached here.
 fisher.sum <- function(p,zero.sub=0.00001,na.rm=FALSE) {
   if(any(p>1, na.rm=TRUE)||any(p<0, na.rm=TRUE))
     stop("You provided bad p-values")
@@ -315,9 +311,12 @@ intervalArea.new = function(dd.1, dd.2){
   return(area)
 }
 
-#' CurveFitting 
-#' @param perm.dat.1, data to permutate
-#' @param points, array of time values
+#' CurveFitting function
+#' 
+#' To perform Local Polynomial Regression Fitting
+#' 
+#' @param perm.dat.1, data to fit the curve.
+#' @param points, array of time values.
 #' @return fitted count over time
 #' @export
 #'
@@ -400,12 +399,15 @@ findSigInterval = function(adjusted.pvalue, threshold = 0.05, sign)
 }
 
 
-#' Permuation
-#' @param perm.dat, permutate data
+#' Permutation test
+#' 
+#' Function to perform permutation test.
+#' 
+#' @param perm.dat, temporal data frame to perform permutation.
 #' @param n.perm, time to perm
 #' @param points, array of time values
 #' @param parall, run using multiple core
-#' @return permutated data
+#' @return permutation test output data
 #' @export
 #'
 

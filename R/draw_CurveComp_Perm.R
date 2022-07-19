@@ -1,20 +1,45 @@
-#' Draw DDEGs trajectories from two master.list object and also show LOESS curve fitting with permuataon
-#' @param master.list.1, master.list object from group 1
-#' @param master.list.2, master.list object from group 2
-#' @param ht.1, TimeHeatmap object from group 1
-#' @param pathway, GO term
-#' @param group.1.name, characters, group 1 name
-#' @param group.2.name, characters, group 2 name
-#' @param n.perm, time to permutate
-#' @param parall, run using multiple core
-#' @param pvalue.threshold, 0.05
-#' @return plot significant curve area
+#' Draw DDEGs from one biological pathway from two master.list objects and also show LOESS curve fitting for both experimental groups, and perform permutation test
+#'
+#' For one specific biological pathway, compare its DDEGs from one experimental group to the other one. For example, if group 1 the most dynamic biological pathway
+#' from TimeHeatmap is GO term A, and there were 100 DDEGs identified from experimental group 1. We want to see how these DDEGs behave in the other experimental group.
+#' Maybe they are also dynamic, but activation/deactivation time may differ. This function will fit LOESS smooth curve fitting for each group and compare the trajectories visually.
+#' And run permutation test to see which time interval these two curve is significantlly separated.
+#'
+#' @param master.list.1, a list object. The output from run_TrendCatcher function, contains master.table element.
+#' @param master.list.2, a list object. The output from run_TrendCatcher function, contains master.table element.
+#' @param ht.1, TimeHeatmap object. The output from draw_TimeHeatmap_GO function, contains  GO.df object.
+#' @param pathway, characters. Must be a biological pathway from GO.df, Description column.
+#' @param group.1.name, characters. For example, severe group. By default group1.
+#' @param group.2.name, characters. For example, moderate group. By default group2
+#' @param n.perm, an integer variable, the number of repeated times to run permutation test. By default is 500.
+#' @param parall, a logical variable. If users want to run using multiple core, set it to TRUE. By default is FALSE.
+#' @param pvalue.threshold, a numeric variable. The adjusted p-value for permutation test. By default is 0.05.
+#' @return a list object. Contains elements named adjusted.pvalue.area, perm, st, en and plot. adjusted.pvalue.area is the adjusted p-value for each chopped small time interval area
+#' compared to the permutation test. perm is the permutations test result for each individual run. st is the start separation time. en is the end of the separation time. plot is the ggplot.
 #' 
+#' @examples
+#' \dontrun{
+#' severe.path<-system.file("extdata", "MasterListSevere.rda", package = "TrendCatcher")
+#' load(severe.path)
+#' moderate.path<-system.file("extdata", "MasterListModerate.rda", package = "TrendCatcher")
+#' load(moderate.path)
+#' ht.path<-system.file("extdata", "htSevere.rda", package = "TrendCatcher")
+#' load(ht.path)
+#' perm_output<-draw_CurveComp_Perm(master.list.1 = master.list.severe, 
+#'                                  master.list.2 = master.list.moderate, 
+#'                                  ht.1 = ht.severe, pathway = "neutrophil activation", 
+#'                                  group.1.name = "severe", 
+#'                                  group.2.name = "moderate", 
+#'                                  n.perm = 100, 
+#'                                  parall = FALSE, 
+#'                                   pvalue.threshold = 0.05)
+#' print(perm_output$plot)
+#' }
 #' @export
 #'
 #'
 draw_CurveComp_Perm<-function(master.list.1, master.list.2, ht.1, pathway, 
-                              group.1.name, group.2.name, n.perm = 500, parall = F, 
+                              group.1.name = "group1", group.2.name="group2", n.perm = 500, parall = F, 
                               pvalue.threshold = 0.05){
   if(FALSE){
     master.list.1 = master.list.severe
@@ -57,7 +82,7 @@ draw_CurveComp_Perm<-function(master.list.1, master.list.2, ht.1, pathway,
   rep.moderate<-rep.moderate + max(rep.severe)
   
   
-  ############################ LOWESS curve fitting]
+  ############################ LOESS curve fitting]
   ## prepare df
   ID<-c(rep.severe, rep.moderate)
   Count<-c(severe$Center.logFC, moderate$Center.logFC)
@@ -95,7 +120,7 @@ draw_CurveComp_Perm<-function(master.list.1, master.list.2, ht.1, pathway,
   #cat("# of Subjects = ", n.subjects, "\n")
   aggregate.df<-df
   
-  ## Run in Parallel
+  ## Run in Parallel, same functions from MetaLonDA
   if(parall == TRUE) {
     max.cores = detectCores()
     cat("# cores = ", max.cores, "\n")

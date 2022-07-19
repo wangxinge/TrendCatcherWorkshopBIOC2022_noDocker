@@ -35,7 +35,7 @@ head(ht.severe$GO.df)
 ht.severe$merge.df %>% filter(Description == "neutrophil activation")
 ```
 
-To show the DDEGs from severe group which were enriched for neutrophil activation pathway, and how their temporal behavior differs between moderate and severe group. We applied LOWESS smoothing curve fitting method.
+To show the DDEGs from severe group which were enriched for neutrophil activation pathway, and how their temporal behavior differs between moderate and severe group. We applied LOESS smoothing curve fitting method.
 
 ```{r, fig.height=10, fig.width=10}
 g<-draw_CurveComp(master.list.1 = master.list.severe, master.list.2 = master.list.moderate, ht.1 = ht.severe, pathway = "neutrophil activation",group.1.name = "severe", group.2.name = "moderate")

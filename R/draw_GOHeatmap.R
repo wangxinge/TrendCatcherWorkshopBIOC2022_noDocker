@@ -1,4 +1,4 @@
-#' Draw GOHeatmap contianing Terms from TimeHeatmap and included Genes
+#' Draw GOHeatmap containing Terms from TimeHeatmap and included Genes
 #'
 #' This funcitons takes the master.list output from run_TrendCatcher, and merge.df output from draw_TimeHeatmap_GO and draw_TimeHeatmap_enrichR.
 #' And showing all the genes used for enrichment analysis and their logFC compared to previous break point.
@@ -16,20 +16,19 @@
 #' @param tiff.width, figure width
 #' @param tiff.height, figure height
 #'
-#' @return A list object, including elements names merge.df and time.heatmap.
-#' time.heatmap is the ggplot object. merge.df includes all the enrichR enrichment result and activation/deactivation time.
+#' @return A list object, including elements named GOheatmap and GOheatmapDat. GOheatmap is a ComplexHeatmap object for figure. GOheatmapDat is a data.frame include log2FC 
+#' value of each gene's expression change compared to the previous break point. 
 #'
 #' @examples
 #' \dontrun{
 #' example.file.path<-system.file("extdata", "BrainMasterList.rda", package = "TrendCatcher")
 #' load(example.file.path)
-#' th.obj<-draw_TimeHeatmap_GO(master.list = master.list)
-#' merge.df<-th.obj$merg.df
-#'
+#' time_heatmap<-draw_TimeHeatmap_GO(master.list = master.list)
+#' merge.df<-time_heatmap$merg.df
 #' time.window<-"0h-6h"
 #' go.terms<-c("regulation of defense response", "leukocyte migration", "myeloid leukocyte migration", "leukocyte chemotaxis",
 #' "granulocyte chemotaxis", "cellular response to chemokine", "chemokine-mediated signaling pathway", "angiogenesis", "sprouting angiogenesis",  "respone to bacterium", "leukocyte mediated immunity")
-#' go.df<-draw_GOHeatmap(master.list = master.list, time.window = "0h-6h", go.terms = go.terms, id.ensembl = TRUE, merge.df = merge.df, logFC.thres = 2)
+#' go.df<-draw_GOHeatmap(master.list = master.list, time.window = "0h-6h", go.terms = go.terms, merge.df = merge.df, logFC.thres = 2)
 #' }
 #' @export
 #'
@@ -37,6 +36,12 @@
 
 draw_GOHeatmap<-function(master.list, time.window="", go.terms="",
                          merge.df=NA, logFC.thres=2, figure.title = "", save.tiff.path = NA, tiff.res = 100, tiff.width = 1500, tiff.height =1500){
+  
+  ####### Check If there is the Symbol column exist!!!! ######
+  idx<-grep("Symbol", colnames(master.list$master.table))
+  if(length(idx)==0){stop("Please add Symbol column to your master.list$master.table. By default, it should be a column of gene SYMBOLs!")}
+  
+  
   if(!is.data.frame(merge.df)){stop("Merge.df missing!!!")}
   if(!time.window %in% merge.df$t.name){stop("Time window format is wrong!!!")}
   if(length(go.terms)==0){stop("Please enter multiple go.terms!!!")}
@@ -124,6 +129,6 @@ draw_GOHeatmap<-function(master.list, time.window="", go.terms="",
     print(ht)
     dev.off()
   }
-  return(term.gene.df.symbol)
+  return(list(GOheatmap = ht, GOheatmapDat = term.gene.df.symbol)
 }
 

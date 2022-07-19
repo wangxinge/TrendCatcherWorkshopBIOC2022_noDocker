@@ -71,6 +71,8 @@ my.pie<-function (x, labels = names(x), edges = 200, radius = 0.8, clockwise = F
 #' @param inner.radius, a numeric variable. The inner pie chart radius size. By default is 0.7.
 #' @param cex.out, a numeric variable. The text size of label of outer pie chart. By default is 1.
 #' @param cex.in, a numeric variable. The text size of the label of inner pie chart. By default is 1.
+#' 
+#' @return plot.
 #' @export
 #'
 
